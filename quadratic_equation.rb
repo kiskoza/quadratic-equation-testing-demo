@@ -13,7 +13,7 @@ class QuadraticEquation # < ActiveRecord
   end
 
   def valid?
-    a != 0 && (b * b - 4 * a * c) > 0
+    a != 0
   end
 
   def solve
@@ -23,14 +23,9 @@ class QuadraticEquation # < ActiveRecord
       raise NoRootsException
     else
       det = b * b - 4 * a * c
-      raise NoRootsException if det < 0
 
-      if det == 0
-        [(0 - b) / (2 * a)]
-      else
-        sqrt = Math.sqrt(det)
-        [(0 - b - sqrt) / (2 * a), (0 - b + sqrt) / (2 * a)]
-      end
+      sqrt = Math.sqrt(det)
+      [(0 - b - det) / (2 * a), (0 - b + det) / (2 * a)]
     end
   end
 end
